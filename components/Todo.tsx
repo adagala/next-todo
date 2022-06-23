@@ -35,12 +35,14 @@ const Todo = ({
           <Input value={title} onChange={e => setTitle(e.target.value)} />
           <Flex>
             <IconButton
+              colorScheme="blue"
               ml={1}
               aria-label="Save todo"
               onClick={() => saveTodo()}
               icon={<CheckIcon />}
             />
             <IconButton
+              colorScheme="gray"
               ml={1}
               onClick={() => setIsEditing(false)}
               aria-label="Close todo"
@@ -55,11 +57,13 @@ const Todo = ({
           <Text>{todo.title}</Text>
           <Flex>
             <IconButton
+              colorScheme="blue"
               onClick={() => setIsEditing(true)}
               aria-label="Edit todo"
               icon={<EditIcon />}
             />
             <IconButton
+              colorScheme="red"
               ml={1}
               onClick={() => onDeleteTodo(todo.id)}
               aria-label="Delete todo"
