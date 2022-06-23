@@ -4,7 +4,14 @@ import {
   EditIcon,
   SmallCloseIcon,
 } from '@chakra-ui/icons'
-import { Container, Flex, IconButton, Input, Text } from '@chakra-ui/react'
+import {
+  Container,
+  Flex,
+  IconButton,
+  Input,
+  Text,
+  Tooltip,
+} from '@chakra-ui/react'
 import { useState } from 'react'
 import { ITodo } from '../models/todo'
 
@@ -34,20 +41,24 @@ const Todo = ({
         <Flex justifyContent="space-between" alignItems="center" py={2.5}>
           <Input value={title} onChange={e => setTitle(e.target.value)} />
           <Flex>
-            <IconButton
-              colorScheme="blue"
-              ml={1}
-              aria-label="Save todo"
-              onClick={() => saveTodo()}
-              icon={<CheckIcon />}
-            />
-            <IconButton
-              colorScheme="gray"
-              ml={1}
-              onClick={() => setIsEditing(false)}
-              aria-label="Close todo"
-              icon={<SmallCloseIcon />}
-            />
+            <Tooltip label="Save">
+              <IconButton
+                colorScheme="blue"
+                ml={1}
+                aria-label="Save todo"
+                onClick={() => saveTodo()}
+                icon={<CheckIcon />}
+              />
+            </Tooltip>
+            <Tooltip label="Close">
+              <IconButton
+                colorScheme="gray"
+                ml={1}
+                onClick={() => setIsEditing(false)}
+                aria-label="Close todo"
+                icon={<SmallCloseIcon />}
+              />
+            </Tooltip>
           </Flex>
         </Flex>
       </Container>
@@ -56,19 +67,23 @@ const Todo = ({
         <Flex justifyContent="space-between" alignItems="center" py={2.5}>
           <Text>{todo.title}</Text>
           <Flex>
-            <IconButton
-              colorScheme="blue"
-              onClick={() => setIsEditing(true)}
-              aria-label="Edit todo"
-              icon={<EditIcon />}
-            />
-            <IconButton
-              colorScheme="red"
-              ml={1}
-              onClick={() => onDeleteTodo(todo.id)}
-              aria-label="Delete todo"
-              icon={<DeleteIcon />}
-            />
+            <Tooltip label="Edit">
+              <IconButton
+                colorScheme="blue"
+                onClick={() => setIsEditing(true)}
+                aria-label="Edit todo"
+                icon={<EditIcon />}
+              />
+            </Tooltip>
+            <Tooltip label="Delete">
+              <IconButton
+                colorScheme="red"
+                ml={1}
+                onClick={() => onDeleteTodo(todo.id)}
+                aria-label="Delete todo"
+                icon={<DeleteIcon />}
+              />
+            </Tooltip>
           </Flex>
         </Flex>
       </Container>
