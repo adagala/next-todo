@@ -9,9 +9,20 @@ interface ITodoProps {
 const TodoAdd = ({ title, onAddTodo, onChange }: ITodoProps) => {
   const isInvalidTitle = title.length < 3
 
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      onAddTodo()
+    }
+  }
+
   return (
     <Container my={8}>
-      <Input placeholder="New todo" value={title} onChange={onChange} />
+      <Input
+        placeholder="New todo"
+        value={title}
+        onChange={onChange}
+        onKeyDown={handleKeyDown}
+      />
       <Flex my={4} justifyContent="end">
         <Button
           isDisabled={isInvalidTitle}

@@ -35,11 +35,21 @@ const Todo = ({
     setIsEditing(false)
   }
 
+  const handleKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      saveTodo()
+    }
+  }
+
   {
     return isEditing ? (
       <Container borderWidth="1px" borderRadius="lg" overflow="hidden" my={2.5}>
         <Flex justifyContent="space-between" alignItems="center" py={2.5}>
-          <Input value={title} onChange={e => setTitle(e.target.value)} />
+          <Input
+            value={title}
+            onChange={e => setTitle(e.target.value)}
+            onKeyDown={handleKeyDown}
+          />
           <Flex>
             <Tooltip label="Save">
               <IconButton
