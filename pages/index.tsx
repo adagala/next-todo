@@ -1,4 +1,11 @@
-import { Center, Container } from '@chakra-ui/react'
+import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import {
+  Center,
+  Container,
+  Flex,
+  IconButton,
+  useColorMode,
+} from '@chakra-ui/react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import { useState } from 'react'
@@ -11,6 +18,7 @@ const todoList: ITodo[] = []
 const Home: NextPage = () => {
   const [title, setTitle] = useState('')
   const [todos, setTodos] = useState(todoList)
+  const { colorMode, toggleColorMode } = useColorMode()
 
   const onAddTodo = () => {
     if (title.length < 3) {
@@ -50,6 +58,18 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+
+      <Container>
+        <Flex justifyContent="flex-end">
+          <IconButton
+            mt={4}
+            aria-label="Toggle Color Mode"
+            onClick={toggleColorMode}
+          >
+            {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+          </IconButton>
+        </Flex>
+      </Container>
 
       <Container w="100%">
         <Center>
